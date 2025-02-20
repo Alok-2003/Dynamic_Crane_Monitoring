@@ -5,10 +5,10 @@ import "leaflet/dist/leaflet.css";
 
 // Define custom marker icon
 const customIcon = new L.Icon({
-  iconUrl: "https://w7.pngwing.com/pngs/575/531/png-transparent-heavy-machinery-architectural-engineering-crane-crane-angle-building-triangle-thumbnail.png", // Red dot icon
-  iconSize: [36, 36],
-  iconAnchor: [18, 18],
-  popupAnchor: [0, -18],
+  iconUrl: "public/crane2.png", // Red dot icon
+  iconSize: [48, 48],
+  iconAnchor: [24, 24],
+  popupAnchor: [0, -24],
 });
 
 const hazardZones = [
