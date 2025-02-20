@@ -30,7 +30,7 @@ const LiveCameraFeed = () => {
   }, []);
 
   return (
-    <div className={`rounded-xl ${cameraActive ? 'bg-slate-800' : 'bg-gray-200'} shadow-sm border ${cameraActive ? 'border-slate-700' : 'border-slate-200'}`}>
+    <div className={`rounded-xl h- ${cameraActive ? 'bg-slate-800' : 'bg-gray-200'} shadow-sm border ${cameraActive ? 'border-slate-700' : 'border-slate-200'}`}>
       <div className="p-4 border-b border-slate-200 dark:border-slate-700">
         <div className="flex items-center gap-2">
           <Camera className="text-blue-600" />

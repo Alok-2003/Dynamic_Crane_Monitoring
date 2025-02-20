@@ -13,15 +13,15 @@ const customIcon = new L.Icon({
 
 const hazardZones = [
   { lat: 30.76926, lng: 76.57642, radius: 200 },
-  { lat: 30.76200, lng: 76.58000, radius: 150 },
 ];
 
 const CustomMap = () => {
   return (
     <MapContainer
       center={[30.76926, 76.57642]}
-      zoom={15}
-      style={{ height: "100%", width: "100%", borderRadius: "10px" }}
+      zoom={16}
+      style={{ height: "100%", width: "100%", borderRadius: "10px", }}
+      
     >
       {/* OpenStreetMap Layer */}
       <TileLayer

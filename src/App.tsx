@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { MapPin, Users, ThermometerSun, Activity, Bell, } from 'lucide-react';
 import LiveCameraFeed from './components/LiveFeed';
 import CustomMap from './components/CustomMap';
+import CraneDropdown from './components/CraneDropdown';
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
-
+  const handleCraneSelect = (crane) => {
+    console.log("Selected crane:", crane);
+  };
   // Simulated data
   const stats = {
     totalWorkers: 45,
@@ -14,8 +17,12 @@ function App() {
     temperature: "24°C",
     windSpeed: "12 km/h",
     visibility: "Good",
-    systemHealth: 98
+    systemHealth: 92,
+    craneLoad: 75,         // e.g., 75% load capacity
+    boomAngle: 45,         // e.g., 45 degrees
+    craneTemperature: 60,  // e.g., 60°C
   };
+
 
   const recentAlerts = [
     { id: 1, message: "Worker approaching restricted zone", time: "2 mins ago", severity: "high" },
@@ -24,36 +31,32 @@ function App() {
   ];
 
   return (
-    <div className={`max-h- ${darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`h-screen ${darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       {/* Main Content */}
-      <main className=" mx-auto p-4 h-[70%]  gap-6">
+      <div className="absolute top-3 left-0 right-1/2 z-10 p-4 flex justify-end">
+        <CraneDropdown onSelect={handleCraneSelect} />
+      </div>
+      <main className=" mx-auto p-4   gap-6">
         {/* Top Row */}
-        <div className=" grid grid-cols-2   gap-4 mb-4 ">
+        <div className=" grid grid-cols-2 h-1/3   gap-4 mb-4 ">
           {/* Camera Feed */}
-          <div className={`rounded-xl ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+          <div className={`rounded-xl   ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
 
             <LiveCameraFeed />
           </div>
 
           {/* Map */}
-          <div className={`rounded-xl h-full  ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+          <div className={`rounded-xl   ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
             <div className="p-4 border-b border-slate-200 dark:border-slate-700">
               <div className="flex items-center gap-2">
                 <MapPin className="text-blue-600" />
                 <h2 className="text-xl font-semibold">Site Map & Hazard Zones</h2>
               </div>
             </div>
-            <div className="p-4 border-b border-slate-700">
-              <div className="flex items-center gap-2">
-                <MapPin className="text-blue-600" />
-                <h2 className="text-xl font-semibold">Site Map & Hazard Zones</h2>
-              </div>
-            </div>
-            <div className="p-4" style={{ height: "300px" }}> {/* Fixed height */}
+
+            <div className="p-4 h-[85%] z-20" > 
               <CustomMap />
             </div>
-
-
           </div>
         </div>
 
@@ -95,7 +98,7 @@ function App() {
               ].map((item, index) => (
                 <div key={index} className="flex justify-between items-center p-3 rounded-lg bg-slate-50 dark:bg-slate-700/30">
                   <span className="text-slate-600 dark:text-slate-300">{item.label}</span>
-                  <span className="font-semibold">{item.value}</span>
+                  <span className="font-semibold text-slate-600 dark:text-slate-300">{item.value}</span>
                 </div>
               ))}
             </div>
@@ -117,11 +120,27 @@ function App() {
               <div className="h-2 mb-4 text-xs flex rounded bg-green-100 dark:bg-green-900/20">
                 <div
                   style={{ width: `${stats.systemHealth}%` }}
-                  className="shadow-none flex text-center whitespace-nowrap text-white justify-center bg-green-500 dark:bg-green-400 transition-all duration-500"
+                  className="shadow-none rounded-xl flex text-center whitespace-nowrap text-white justify-center bg-green-500 dark:bg-green-400 transition-all duration-500"
                 ></div>
+              </div>
+              {/* Additional Crane Parameters */}
+              <div className=" space-y-4">
+                <div className='flex justify-between items-center ' >
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Load Capacity</p>
+                  <p className="text-xl font-bold">{stats.craneLoad}%</p>
+                </div>
+                <div className='flex justify-between items-center '>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Boom Angle</p>
+                  <p className="text-xl font-bold">{stats.boomAngle}°</p>
+                </div>
+                <div className='flex justify-between items-center ' >
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Crane Temp</p>
+                  <p className="text-xl font-bold">{stats.craneTemperature}°C</p>
+                </div>
               </div>
             </div>
           </div>
+
 
           {/* Recent Alerts */}
           <div className={`rounded-xl ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'} p-4`}>
@@ -141,7 +160,7 @@ function App() {
                         : 'bg-blue-50 dark:bg-blue-900/20 border-blue-100 dark:border-blue-800'
                       }`}
                   >
-                    <div className="flex justify-between items-center">
+                    <div className="flex justify-between items-center text-sm ">
                       <span className={`font-medium ${alert.severity === 'high'
                         ? 'text-red-700 dark:text-red-300'
                         : alert.severity === 'medium'
