@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import  { useState } from 'react';
 import { MapPin, Users, ThermometerSun, Activity, Bell, } from 'lucide-react';
 import LiveCameraFeed from './components/LiveFeed';
 import CustomMap from './components/CustomMap';
 import CraneDropdown from './components/CraneDropdown';
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
-  const handleCraneSelect = (crane) => {
+  const [darkMode] = useState(true);
+  const handleCraneSelect = (crane: number) => {
     console.log("Selected crane:", crane);
   };
   // Simulated data
