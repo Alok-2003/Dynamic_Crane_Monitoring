@@ -6,7 +6,7 @@ import "@tensorflow/tfjs";
 const LiveCameraFeed = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
-  const [cameraActive, setCameraActive] = useState(false);
+  const [cameraActive, setCameraActive] = useState(true);
   const [model, setModel] = useState<any>(null);
 
   // Start the camera
@@ -86,14 +86,14 @@ const LiveCameraFeed = () => {
   };
 
   return (
-    <div className={`rounded-xl ${cameraActive ? 'bg-slate-800' : 'bg-gray-200'} shadow-sm border ${cameraActive ? 'border-slate-700' : 'border-slate-200'}`}>
+    <div className={`rounded-xl overflow-hidden ${cameraActive ? 'bg-slate-800' : 'bg-gray-200'} shadow-sm border ${cameraActive ? 'border-slate-700' : 'border-slate-200'}`}>
       <div className="p-4 border-b border-slate-200 dark:border-slate-700">
         <div className="flex items-center gap-2">
           <Camera className="text-blue-600" />
           <h2 className="text-xl font-semibold">Live Camera Feed</h2>
         </div>
       </div>
-      <div className="relative aspect-video bg-slate-900  overflow-hidden">
+      <div className="relative aspect-video bg-slate-900 overflow-hidden">
         <video
           ref={videoRef}
           className="w-full object-cover"

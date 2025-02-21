@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { MapPin, Users, ThermometerSun, Activity, Bell, } from 'lucide-react';
 import LiveCameraFeed from './components/LiveFeed';
 import CustomMap from './components/CustomMap';
@@ -31,14 +31,14 @@ function App() {
   ];
 
   return (
-    <div className={`h-screen ${darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
+    <div className={`lg:h-screen sm:h-full ${darkMode ? 'bg-slate-900 text-slate-100' : 'bg-slate-50 text-slate-900'}`}>
       {/* Main Content */}
-      <div className="absolute top-3 left-0 right-1/2 z-10 p-4 flex justify-end">
+      <div className="absolute top-3 left-0 lg:right-1/2 right-2 z-10 p-4 flex justify-end ">
         <CraneDropdown onSelect={handleCraneSelect} />
       </div>
-      <main className=" mx-auto p-4   gap-6">
+      <main className=" mx-auto p-4 h-full flex flex-col lg:gap-6">
         {/* Top Row */}
-        <div className=" grid grid-cols-2 h-1/3   gap-4 mb-4 ">
+        <div className=" grid lg:grid-cols-2 lg:h-full h-full flex-col  gap-4 mb-4 ">
           {/* Camera Feed */}
           <div className={`rounded-xl   ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
 
@@ -46,15 +46,15 @@ function App() {
           </div>
 
           {/* Map */}
-          <div className={`rounded-xl   ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+          <div className={`rounded-xl h-full    ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
             <div className="p-4 border-b border-slate-200 dark:border-slate-700">
-              <div className="flex items-center gap-2">
+              <div className="flex  items-center gap-2">
                 <MapPin className="text-blue-600" />
                 <h2 className="text-xl font-semibold">Site Map & Hazard Zones</h2>
               </div>
             </div>
 
-            <div className="p-4 h-[85%] z-20" > 
+            <div className="p-4 lg:h-[85%] h-80 " >
               <CustomMap />
             </div>
           </div>
@@ -126,16 +126,16 @@ function App() {
               {/* Additional Crane Parameters */}
               <div className=" space-y-4">
                 <div className='flex justify-between items-center ' >
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Load Capacity</p>
-                  <p className="text-xl font-bold">{stats.craneLoad}%</p>
+                  <p className="text-lg text-gray-500 dark:text-gray-400">Load Capacity</p>
+                  <p className="text-lg font-bold">{stats.craneLoad}%</p>
                 </div>
                 <div className='flex justify-between items-center '>
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Boom Angle</p>
-                  <p className="text-xl font-bold">{stats.boomAngle}°</p>
+                  <p className="text-lg text-gray-500 dark:text-gray-400">Boom Angle</p>
+                  <p className="text-lg font-bold">{stats.boomAngle}°</p>
                 </div>
                 <div className='flex justify-between items-center ' >
-                  <p className="text-sm text-gray-500 dark:text-gray-400">Crane Temp</p>
-                  <p className="text-xl font-bold">{stats.craneTemperature}°C</p>
+                  <p className="text-lg text-gray-500 dark:text-gray-400">Crane Temp</p>
+                  <p className="text-lg font-bold">{stats.craneTemperature}°C</p>
                 </div>
               </div>
             </div>

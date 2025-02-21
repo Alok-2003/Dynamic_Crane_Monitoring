@@ -5,7 +5,7 @@ import "leaflet/dist/leaflet.css";
 
 // Define custom marker icon
 const customIcon = new L.Icon({
-  iconUrl: "public/crane2.png", // Red dot icon
+  iconUrl: "/crane2.png", // Red dot icon
   iconSize: [48, 48],
   iconAnchor: [24, 24],
   popupAnchor: [0, -24],

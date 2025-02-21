@@ -8,7 +8,7 @@ interface CraneDropdownProps {
 
 const CraneDropdown: React.FC<CraneDropdownProps> = ({ cranes = [1, 2, 3, 4, 5], onSelect }) => {
   const [open, setOpen] = useState(false);
-  const [selected, setSelected] = useState<number | null>(null);
+  const [selected, setSelected] = useState<number | null>(1);
   const ref = useRef<HTMLDivElement>(null);
 
   const handleSelect = (num: number) => {
@@ -28,11 +28,11 @@ const CraneDropdown: React.FC<CraneDropdownProps> = ({ cranes = [1, 2, 3, 4, 5],
   }, []);
 
   return (
-    <div ref={ref} className="relative inline-block text-left z-50">
+    <div ref={ref} className="relative inline-block text-left z-50 ">
       <button
         onClick={() => setOpen((prev) => !prev)}
         type="button"
-        className="inline-flex z-50 justify-between items-center w-40 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
+        className="inline-flex z-50  justify-between items-center lg:w-32 w-28 rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white lg:text-sm text-[12px] font-medium text-gray-700 hover:bg-gray-50 focus:outline-none"
       >
         {selected ? `Crane ${selected}` : 'Select Crane'}
         <ChevronDown className="ml-2 h-5 w-5" />
