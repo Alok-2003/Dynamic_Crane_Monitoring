@@ -6,7 +6,7 @@ const Home = () => {
     const navigate = useNavigate();
 
     return (
-        <div className="min-h-screen bg-[url(./bg.png)] object-cover text-white flex flex-col items-center justify-center p-0">
+        <div className="min-h-screen bg-[url(/bg.png)] object-cover text-white flex flex-col items-center justify-center p-0">
             {/* Heading Section */}
             <div className="w-full max-w-3xl p-8 bg-black/30 bg-opacity-30 backdrop-blur-md rounded-lg shadow-lg border border-black/30" >
                 <div className="text-center mb-6">
