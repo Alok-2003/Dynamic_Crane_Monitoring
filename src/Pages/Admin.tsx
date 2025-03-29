@@ -5,6 +5,7 @@ import CustomMap from '../components/CustomMap';
 import CraneDropdown from '../components/CraneDropdown';
 // import CraneDashboard from './components/CraneDashboard';
 import CraneVisualization from '../components/CraneVisualization';
+import Helmet from '../components/Helmet';
 
 function Admin() {
   const [darkMode] = useState(true);
@@ -145,7 +146,7 @@ function Admin() {
 
 
           {/* Recent Alerts */}
-          <div className={`rounded-xl ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'} p-4`}>
+          {/* <div className={`rounded-xl ${darkMode ? 'bg-slate-800' : 'bg-white'} shadow-sm border ${darkMode ? 'border-slate-700' : 'border-slate-200'} p-4`}>
             <div className="flex items-center gap-2 mb-4">
               <Bell className="text-blue-600" />
               <h2 className="text-xl font-semibold">Recent Alerts</h2>
@@ -177,7 +178,9 @@ function Admin() {
                 <p className="text-sm text-slate-500 dark:text-slate-400">No recent alerts.</p>
               )}
             </div>
-          </div>
+          </div> */}
+
+          <Helmet/>
         </div>
 
       </main>
