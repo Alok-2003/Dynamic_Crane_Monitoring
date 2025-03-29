@@ -13,20 +13,20 @@ const CraneVisualization: React.FC = () => {
     // Initialize scene, camera, and renderer
     const scene = new THREE.Scene();
     const camera = new THREE.PerspectiveCamera(
-      95, // Field of view
-      window.innerWidth / window.innerHeight, // Aspect ratio
+      75, // Field of view
+      500 / 250, // Aspect ratio based on fixed size
       0.1, // Near clipping plane
       500 // Far clipping plane
     );
 
     const renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
+    renderer.setSize(700, 350); // Fixed canvas size
     if (sceneRef.current) {
       sceneRef.current.appendChild(renderer.domElement);
     }
 
     // Add lighting
-    const light = new THREE.AmbientLight(0x404040, 5); // Ambient light
+    const light = new THREE.AmbientLight(0x404040, 1); // Ambient light
     scene.add(light);
 
     const directionalLight = new THREE.DirectionalLight(0xffffff, 1);
@@ -42,8 +42,8 @@ const CraneVisualization: React.FC = () => {
     // Load the 3D model (use OBJLoader for obj files)
     const loader = new OBJLoader();
     if (!modelLoaded) { // Load the model only if it hasn't been loaded already
-      loader.load('/models/Kran.obj', (object) => {
-        object.scale.set(1, 1, 1); // Scale down the object if it's too big or too small
+      loader.load('/models/Kran.obj', (object: THREE.Group) => {
+        object.scale.set(1, 1, 1); // Scale the object as necessary
         object.traverse((child) => {
           if (child instanceof THREE.Mesh) {
             child.material = new THREE.MeshNormalMaterial(); // Apply material to visualize the model better
@@ -55,13 +55,13 @@ const CraneVisualization: React.FC = () => {
     }
 
     // Set camera position
-    camera.position.set(10, 10, 10); // Adjust the Z position of the camera
+    camera.position.set(10, 10, -10); // Adjust the Z position of the camera for better visibility
 
     // Handle window resizing
     const onWindowResize = () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
+      camera.aspect = 400 / 150; // Fixed aspect ratio
       camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setSize(500, 250); // Maintain fixed canvas size
     };
     window.addEventListener('resize', onWindowResize, false);
 
